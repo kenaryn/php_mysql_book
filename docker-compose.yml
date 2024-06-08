@@ -1,0 +1,27 @@
+name: 'docker_dev'
+services:
+  web:
+    build: './build/php'
+    ports:
+      - '80:80'
+    volumes:
+      - ~/dev/php/mydocker:/var/www/html
+    links:
+      - db:db
+
+  db:
+    build: './build/mysql'
+    volumes:
+      - ~/.docker/mysql:/var/lib/msql
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=mybigpassword
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8086:80'
+    links:
+      - db:db
+    
