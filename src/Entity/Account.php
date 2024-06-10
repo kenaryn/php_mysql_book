@@ -2,19 +2,33 @@
 
 declare(strict_types=1);
 
+namespace App\Entity;
+
 class Account
 {
-  public ?int $number = null;
-  public ?string $type = null;
-  public ?float $balance = null;
-
-  public function deposit(float $amount): float
+  
+  public function __construct(public ?array $numbers = [], public ?string $type = null, protected ?float $balance = null)
   {
-    return 0.0;
+    $this->numbers = $numbers;
+    $this->type = $type;
+    $this->balance = $balance;
   }
 
-  public function withdraw(float $amount): float
+  
+  public function deposit(float $amount): float
   {
-    return 0.0;
+      $this->balance += $amount;
+      return $this->balance;
+    }
+    
+    public function withdraw(float $amount): float
+    {
+      $this->balance -= $amount;
+      return $this->balance;
+  }
+
+  public function getBalance(): float
+  {
+    return $this->balance;
   }
 }
