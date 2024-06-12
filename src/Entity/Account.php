@@ -7,7 +7,7 @@ namespace App\Entity;
 class Account
 {
 
-  public function __construct(public AccountNumber|null $number = null, public ?string $type = null, protected ?float $balance = null)
+  public function __construct(public int|null $number = null, public ?string $type = null, protected ?float $balance = null,)
   {
     $this->number = $number;
     $this->type = $type;

@@ -1,0 +1,13 @@
+body {
+   background-color: antiquewhite;
+}
+
+.credit {
+   color: lightgreen;
+   font-weight: bold;
+}
+   
+.overdrawn {
+   color: lightcoral;
+   font-weight: bold;
+}
