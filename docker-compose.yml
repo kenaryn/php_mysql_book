@@ -5,7 +5,7 @@ services:
     ports:
       - '80:80'
     volumes:
-      - ./mydocker:/var/www/mydocker
+      - .:/var/www/mydocker
     links:
       - db:db
 

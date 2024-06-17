@@ -1,7 +1,6 @@
 <?php
 declare(strict_types=1);
 
-require './templates/includes/header.php';
 
 $str = 'Using PHP\'s regular expression functions';
 $path = 'code/section_b/c05';
@@ -29,6 +28,16 @@ $customer = [
 if (array_key_exists('forename', $customer)) {
    $greeting .= ' ' . $customer['forename'];
 }
+
+array_unshift($bestsellers, 'glue stick');
+$item = ['ink', 'pencil', 'scissors', 'notebook', 'blank eraser'];
+
+################## Array functions sorting
+$order = ['notebook', 'pencil', 'scissors', 'eraser', 'ink', 'washi tape'];
+sort($order);
+$tools = implode(', ', $order);
+
+require '../templates/includes/header.php';
 ?>
 
 <table class="table">
@@ -68,11 +77,12 @@ if (array_key_exists('forename', $customer)) {
       
       <?php
 var_export($furnitures) ;
-
-array_unshift($bestsellers, 'glue stick');
-$item = ['ink', 'pencil', 'scissors', 'notebook', 'blank eraser'];
 ?>
+
+<h4>New order</h4>
+<p><?= $tools ?></p>
+
  
  <?php
-require './templates/includes/footer.php';
+require '../templates/includes/footer.php';
 ?>
