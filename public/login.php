@@ -1,6 +1,14 @@
 <?php
 declare(strict_types=1);
 $path = '../assets/images/logo.jpg';
+
+$devorer = [
+   'latin' => 'demiurgos',
+   'greek' => 'abraxas',
+   'hebrew' => 'ialdabaoth',
+];
+$entity = $_GET['entity'];
+$name = $devorer[$entity];
 ?>
 
 <?php
@@ -20,9 +28,15 @@ require '../templates/includes/header.php';
    <p>There is no such file.</p>
 <?php } ?>
 
+<?php foreach ($devorer as $origin => $name) { ?>
+   <a href="login.php?entity=<?= $origin ?>"><?= $origin ?></a>
+<?php } ?>
+
+<h4><?= $entity ?></h4>
+<p><?= $name ?></p>
+
+<?php var_dump($_GET); ?>
+
 <?php
-// header('Location: deco.php');
-// header('Control-cache: max-age=86400, public');
-// header('Content-type: application/json');
 require '../templates/includes/footer.php';
 ?>

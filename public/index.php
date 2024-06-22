@@ -1,23 +1,31 @@
 <?php
 declare(strict_types=1);
 
-$logged_in = false;
-if (!$logged_in) {
-   header('Location: login.php');
-   exit;
+$devorer = [
+   'greek' => 'abraxas',
+   'hebrew' => 'ialdabaoth',
+   'latin' => 'demiurgos',
+];
+
+$entity = $_GET['entity'] ?? '';
+$valid = array_key_exists($entity, $devorer);
+
+if (!$valid) {
+   http_response_code(404);
+   header('Location: 404.php');
+   exit(2);
 }
 
-// header('Content-type: application/json');
-// header('Cache-control: max-age=86400, public');
-
-require_once '../config/constants.php';
-require_once '../templates/includes/header.php';
+$name = $devorer[$entity];
 ?>
 
-<h2>Welcome to <?= SITE_NAME ?> member area</h2>
-<p>You are now in an exclusive area.</p>
-<p>To contact me, email <?= ADMIN_EMAIL ?></p>
+<?php require '../templates/includes/header.php'; ?>
 
-<?php
-require_once '../templates/includes/footer.php';
-?>
+<?php foreach ($devorer as $origin => $surname) { ?>
+   <a href="index.php?entity=<?= $origin ?>"><?= $origin ?></a>
+<?php } ?>
+
+<h4><?= $entity ?></h4>
+<p><?= $name ?></p>
+
+<?php require '../templates/includes/footer.php'; ?>

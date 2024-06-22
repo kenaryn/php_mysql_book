@@ -1,0 +1,37 @@
+# services: '3.3'
+  name: 'docker_dev'
+  web:
+    build: './build/php'
+    ports:
+      - '80:80'
+    volumes:
+      - .:/var/www/mydocker
+    links:
+      - db:db
+
+  db:
+    build: './build/mysql'
+    volumes:
+      - ~/.docker/mysql:/var/lib/msql
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=mybigpassword
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '8086:80'
+    links:
+      - db:db
+    # environment: 
+    #   - MYSQL_ROOT_PASSWORD: mybigpassword
+    #   - PMA_HOST: mysql
+    #   - XDEBUG_MODE: "develop, debug"
+    #   - XDEBUG_CONFIG: client_host=host.docker.internal, start_with_request=yes
+    # depends_on:
+    #   - mysql
+
+  
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"

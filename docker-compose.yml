@@ -6,8 +6,8 @@ services:
       - '80:80'
     volumes:
       - .:/var/www/mydocker
-    links:
-      - db:db
+    depends_on:
+      - db
 
   db:
     build: './build/mysql'
@@ -22,6 +22,6 @@ services:
     image: phpmyadmin/phpmyadmin
     ports:
       - '8086:80'
-    links:
-      - db:db
+    depends_on:
+      - db
     
